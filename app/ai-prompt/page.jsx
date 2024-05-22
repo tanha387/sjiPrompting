@@ -1,9 +1,10 @@
 "use client";
+
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-import Form from "@components/Form";
+import FormCustom from "@components/FormCustom";
 
 const CreatePrompt = () => {
   const router = useRouter();
@@ -11,7 +12,6 @@ const CreatePrompt = () => {
 
   const [submitting, setIsSubmitting] = useState(false);
   const [post, setPost] = useState({ prompt: "", tag: "" });
-  const [generatedPrompt, setGeneratedPrompt] = useState("");
 
   const createPrompt = async (e) => {
     e.preventDefault();
@@ -24,7 +24,6 @@ const CreatePrompt = () => {
           prompt: post.prompt,
           userId: session?.user.id,
           tag: post.tag,
-          generatedPrompt: generatedPrompt, // Include generated prompt here
         }),
       });
 
@@ -39,14 +38,12 @@ const CreatePrompt = () => {
   };
 
   return (
-    <Form
+    <FormCustom
       type="Create"
       post={post}
       setPost={setPost}
       submitting={submitting}
       handleSubmit={createPrompt}
-      generatedPrompt={generatedPrompt}
-      setGeneratedPrompt={setGeneratedPrompt}
     />
   );
 };
