@@ -12,8 +12,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization:
-              "Bearer sk-proj-pjFbA05IC91oCT0Fm4DYT3BlbkFJ2D8NizdNA7wic3FU9VXj",
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
           },
           body: JSON.stringify({
             model: "gpt-3.5-turbo",
